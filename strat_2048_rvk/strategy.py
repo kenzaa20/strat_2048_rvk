@@ -5,9 +5,11 @@ Implements a strategy for the game 2048.
 from .cp2048 import Game2048
 import numpy
 
+# On crée une grille avec des poids rangés en serpentin.
 weight_grid = numpy.array([[1,10,100,1000],[10000000,1000000,100000,10000],[100000000,1000000000,10000000000,100000000000],[1000000000000000,100000000000000,10000000000000,1000000000000]], dtype=int)
-n = 2
 
+# Produit scalaire canonique de grid avec weight_grid qui va nous permettre de comparer les différentes directions.
+# Plus le produit scalaire est élevé, plus la nouvelle grille obtenue aura ses valeurs rangées selon les poids.
 def grid_score(grid):
     result = 0
     for i in range(4):
@@ -15,6 +17,7 @@ def grid_score(grid):
             result += grid[i,j]*weight_grid[i,j]
     return result
 
+# Test d'égalité entre deux tableaux.
 def not_equal(a,b):
     for i in range(4):
         for j in range(4):
@@ -23,10 +26,12 @@ def not_equal(a,b):
     return False
 
 def strategy(game, state, moves):
+    n = 2 # Nombre de coups d'avance considérée (n=2 a été choisi par compromis entre temps d'exécution et efficacité de la stratégie).
     test_game = Game2048()
     grids = [[game, 0]]
     direction = -1
     for k in range(n):
+         # Calcul de toutes les possibilités de grille après n coups joués.
         temp = []
         m = len(grids)
         for j in range(m):
@@ -46,6 +51,7 @@ def strategy(game, state, moves):
         maximum = grid_score(grids[0][0])
         direction = grids[0][1]
         for g in grids[1:]:
+            # Recherche de la grille qui a ses coefficients rangés de façon la plus proche des masses dans weight_grid.
             score = grid_score(g[0])
             if score > maximum:
                 direction = g[1]
