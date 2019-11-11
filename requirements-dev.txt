@@ -1,7 +1,0 @@
-coverage
-flake8
-matplotlib
-pillow
-sphinx
-sphinx-gallery
-wheel

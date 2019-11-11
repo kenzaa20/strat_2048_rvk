@@ -6,8 +6,7 @@ import numpy
 from strat_2048_rvk.strategy import (
     strategy, grid_score, not_equal
 )
-from strat_2048_rvk import evaluate_strategy, Game2048
-
+from ensae_teaching_cs.td_1a.cp2048 import Game2048, evaluate_strategy
 
 class TestStrategy(unittest.TestCase):
     def test_grid_score(self):
@@ -25,10 +24,11 @@ class TestStrategy(unittest.TestCase):
         assert gen == True
 
     def test_strategy(self):
-        mat = numpy.zeros((4, 4), dtype=numpy.int32)
+        mat = numpy.zeros((4, 4), dtype=int)
         mat[1, 1] = 1
-        g = Game2048(mat)
-        rnd = strategy(g.game, g.state, g.moves)
+        g = Game2048()
+        g.game = mat
+        rnd = strategy(g.game, g.moves)
         assert rnd in {0, 1, 2, 3}
 
     def test_measure_strategy(self):

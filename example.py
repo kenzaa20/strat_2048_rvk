@@ -5,12 +5,10 @@ Tries a strategy and show the results
 Results of our strategy
 
 """
-import numpy
 import matplotlib.pyplot as plt
 
 from strat_2048_rvk.strategy import strategy
-from strat_2048_rvk import evaluate_strategy, Game2048
-
+from ensae_teaching_cs.td_1a.cp2048 import evaluate_strategy
 ##############################
 # The strategy :func:`strategy
 # <strat_2048_rvk.strategy.strategy>`

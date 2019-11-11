@@ -2,7 +2,7 @@
 Implements a strategy for the game 2048.
 """
 
-from .cp2048 import Game2048
+from ensae_teaching_cs.td_1a.cp2048 import Game2048
 import numpy
 
 # On crée une grille avec des poids rangés en serpentin.
@@ -25,7 +25,7 @@ def not_equal(a,b):
                 return True
     return False
 
-def strategy(game, state, moves):
+def strategy(game, moves):
     n = 2 # Nombre de coups d'avance considérée (n=2 a été choisi par compromis entre temps d'exécution et efficacité de la stratégie).
     test_game = Game2048()
     grids = [[game, 0]]
